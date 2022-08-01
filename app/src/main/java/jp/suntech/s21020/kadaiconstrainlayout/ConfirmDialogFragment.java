@@ -25,9 +25,13 @@ public class ConfirmDialogFragment extends DialogFragment {
         @Override
         public void onClick(DialogInterface dialog, int which) {
             String msg = "";
+            String name = getArguments().getString("name", "");
+            String mail = getArguments().getString("mail", "");
+            String title = getArguments().getString("title", "");
+            String comment = getArguments().getString("comment", "");
             switch (which){
                 case DialogInterface.BUTTON_POSITIVE:
-                    msg = getString(R.string.dialog_ok_toast);
+                    msg = mail + "\n" +name+"さん宛てに\n" + title + "：\n" + comment + "\nを送信します。";
                     break;
                 case DialogInterface.BUTTON_NEGATIVE:
                     msg = getString(R.string.dialog_ng_toast);

@@ -1,11 +1,6 @@
 package jp.suntech.s21020.kadaiconstrainlayout;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.DialogFragment;
-
-import android.app.AlertDialog;
-import android.app.Dialog;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -37,18 +32,25 @@ public class MainActivity extends AppCompatActivity {
             EditText inputMail = findViewById(R.id.etMail);
             EditText inputTitle = findViewById(R.id.etTitle);
             EditText inputComment = findViewById(R.id.etComment);
+            String name = inputName.getText().toString();
+            String mail = inputMail.getText().toString();
+            String title = inputTitle.getText().toString();
+            String comment = inputComment.getText().toString();
+            String show = mail + "\n" +name+"さん宛てに\n" + title + "：\n" + comment + "\nを送信します。";
+            Bundle args = new Bundle();
+            args.putString("name", name);
+            args.putString("mail", mail);
+            args.putString("title", title);
+            args.putString("comment", comment);
 
             int id = view.getId();
             switch (id){
                 case R.id.btConfirm:
                     ConfirmDialogFragment dialogFragment = new ConfirmDialogFragment();
+                    dialogFragment.setArguments(args);
                     dialogFragment.show(getSupportFragmentManager(), "ConfirmDialogFragment");
                     break;
                 case R.id.btSend:
-                    String name = inputName.getText().toString();
-                    String mail = inputMail.getText().toString();
-                    String title = inputTitle.getText().toString();
-                    String show ="名前："+name+", タイトル:" + title + ", メールアドレス：" + mail + "に質問内容を送信します。";
                     Toast.makeText(MainActivity.this, show, Toast.LENGTH_LONG).show();
                     break;
                 case R.id.btClear:
