@@ -24,7 +24,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private class HelloListener implements View.OnClickListener{
-
         @Override
         public void onClick(View view) {
             EditText inputName = findViewById(R.id.etName);
